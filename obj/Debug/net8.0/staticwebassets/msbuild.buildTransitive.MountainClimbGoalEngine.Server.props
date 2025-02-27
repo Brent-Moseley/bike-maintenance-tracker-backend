@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\MountainClimbGoalEngine.Server.props" />
+</Project>

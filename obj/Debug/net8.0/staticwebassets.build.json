@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "3vZqOeSBMLnqfFfWkwazaDsE6uy6CpPSTAqUPimii/k=",
+  "Source": "BikeMaintTracker.Server",
+  "BasePath": "_content/BikeMaintTracker.Server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
