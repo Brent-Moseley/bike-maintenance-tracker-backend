@@ -38,3 +38,4 @@ C:\Users\brent\source\repos\bike-maintenance-tracker-backend\obj\Debug\net8.0\re
 C:\Users\brent\source\repos\bike-maintenance-tracker-backend\obj\Debug\net8.0\BikeMaintTracker.Server.pdb
 C:\Users\brent\source\repos\bike-maintenance-tracker-backend\obj\Debug\net8.0\BikeMaintTracker.Server.genruntimeconfig.cache
 C:\Users\brent\source\repos\bike-maintenance-tracker-backend\obj\Debug\net8.0\ref\BikeMaintTracker.Server.dll
+C:\Users\brent\source\repos\bike-maintenance-tracker-backend\obj\Debug\net8.0\BikeMaintTracker.Server.sourcelink.json

@@ -3,32 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\brent\\source\\repos\\bike-maintenance-tracker-backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F3EB6C8A-607F-414F-B47D-EFA471247B97}|BikeMaintTracker.Server.csproj|c:\\users\\brent\\source\\repos\\bike-maintenance-tracker-backend\\testdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F3EB6C8A-607F-414F-B47D-EFA471247B97}|BikeMaintTracker.Server.csproj|solutionrelative:testdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F3EB6C8A-607F-414F-B47D-EFA471247B97}|BikeMaintTracker.Server.csproj|c:\\users\\brent\\source\\repos\\bike-maintenance-tracker-backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3EB6C8A-607F-414F-B47D-EFA471247B97}|BikeMaintTracker.Server.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F3EB6C8A-607F-414F-B47D-EFA471247B97}|BikeMaintTracker.Server.csproj|c:\\users\\brent\\source\\repos\\bike-maintenance-tracker-backend\\controllers\\bikecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F3EB6C8A-607F-414F-B47D-EFA471247B97}|BikeMaintTracker.Server.csproj|solutionrelative:controllers\\bikecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{F3EB6C8A-607F-414F-B47D-EFA471247B97}|BikeMaintTracker.Server.csproj|c:\\users\\brent\\source\\repos\\bike-maintenance-tracker-backend\\testdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3EB6C8A-607F-414F-B47D-EFA471247B97}|BikeMaintTracker.Server.csproj|solutionrelative:testdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F3EB6C8A-607F-414F-B47D-EFA471247B97}|BikeMaintTracker.Server.csproj|c:\\users\\brent\\source\\repos\\bike-maintenance-tracker-backend\\dbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F3EB6C8A-607F-414F-B47D-EFA471247B97}|BikeMaintTracker.Server.csproj|solutionrelative:dbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F3EB6C8A-607F-414F-B47D-EFA471247B97}|BikeMaintTracker.Server.csproj|c:\\users\\brent\\source\\repos\\bike-maintenance-tracker-backend\\models\\alerts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F3EB6C8A-607F-414F-B47D-EFA471247B97}|BikeMaintTracker.Server.csproj|solutionrelative:models\\alerts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F3EB6C8A-607F-414F-B47D-EFA471247B97}|BikeMaintTracker.Server.csproj|c:\\users\\brent\\source\\repos\\bike-maintenance-tracker-backend\\models\\maintlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F3EB6C8A-607F-414F-B47D-EFA471247B97}|BikeMaintTracker.Server.csproj|solutionrelative:models\\maintlog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F3EB6C8A-607F-414F-B47D-EFA471247B97}|BikeMaintTracker.Server.csproj|c:\\users\\brent\\source\\repos\\bike-maintenance-tracker-backend\\models\\bikes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F3EB6C8A-607F-414F-B47D-EFA471247B97}|BikeMaintTracker.Server.csproj|solutionrelative:models\\bikes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F3EB6C8A-607F-414F-B47D-EFA471247B97}|BikeMaintTracker.Server.csproj|c:\\users\\brent\\source\\repos\\bike-maintenance-tracker-backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F3EB6C8A-607F-414F-B47D-EFA471247B97}|BikeMaintTracker.Server.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F3EB6C8A-607F-414F-B47D-EFA471247B97}|BikeMaintTracker.Server.csproj|c:\\users\\brent\\source\\repos\\bike-maintenance-tracker-backend\\models\\alertstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3EB6C8A-607F-414F-B47D-EFA471247B97}|BikeMaintTracker.Server.csproj|solutionrelative:models\\alertstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,64 +38,40 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Alerts.cs",
-              "DocumentMoniker": "C:\\Users\\brent\\source\\repos\\bike-maintenance-tracker-backend\\Models\\Alerts.cs",
-              "RelativeDocumentMoniker": "Models\\Alerts.cs",
-              "ToolTip": "C:\\Users\\brent\\source\\repos\\bike-maintenance-tracker-backend\\Models\\Alerts.cs",
-              "RelativeToolTip": "Models\\Alerts.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T23:24:55.757Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Bikes.cs",
-              "DocumentMoniker": "C:\\Users\\brent\\source\\repos\\bike-maintenance-tracker-backend\\Models\\Bikes.cs",
-              "RelativeDocumentMoniker": "Models\\Bikes.cs",
-              "ToolTip": "C:\\Users\\brent\\source\\repos\\bike-maintenance-tracker-backend\\Models\\Bikes.cs",
-              "RelativeToolTip": "Models\\Bikes.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T23:07:20.413Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MaintLog.cs",
-              "DocumentMoniker": "C:\\Users\\brent\\source\\repos\\bike-maintenance-tracker-backend\\Models\\MaintLog.cs",
-              "RelativeDocumentMoniker": "Models\\MaintLog.cs",
-              "ToolTip": "C:\\Users\\brent\\source\\repos\\bike-maintenance-tracker-backend\\Models\\MaintLog.cs",
-              "RelativeToolTip": "Models\\MaintLog.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-26T23:05:08.633Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\brent\\source\\repos\\bike-maintenance-tracker-backend\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\brent\\source\\repos\\bike-maintenance-tracker-backend\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAArwBcAAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T16:35:03.493Z"
+              "WhenOpened": "2025-02-27T22:10:26.234Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
+              "Title": "AlertStatus.cs",
+              "DocumentMoniker": "C:\\Users\\brent\\source\\repos\\bike-maintenance-tracker-backend\\Models\\AlertStatus.cs",
+              "RelativeDocumentMoniker": "Models\\AlertStatus.cs",
+              "ToolTip": "C:\\Users\\brent\\source\\repos\\bike-maintenance-tracker-backend\\Models\\AlertStatus.cs",
+              "RelativeToolTip": "Models\\AlertStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-27T17:40:04.527Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "TestDB.cs",
               "DocumentMoniker": "C:\\Users\\brent\\source\\repos\\bike-maintenance-tracker-backend\\TestDB.cs",
               "RelativeDocumentMoniker": "TestDB.cs",
               "ToolTip": "C:\\Users\\brent\\source\\repos\\bike-maintenance-tracker-backend\\TestDB.cs",
               "RelativeToolTip": "TestDB.cs",
-              "ViewState": "AgIAAJoAAAAAAAAAAAA4wKoAAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAACsAAAAAAAAAAAAQwEIAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T16:32:40.365Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-25T16:32:40.365Z"
             },
             {
               "$type": "Document",
@@ -113,20 +81,20 @@
               "RelativeDocumentMoniker": "Controllers\\BikeController.cs",
               "ToolTip": "C:\\Users\\brent\\source\\repos\\bike-maintenance-tracker-backend\\Controllers\\BikeController.cs",
               "RelativeToolTip": "Controllers\\BikeController.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAADwvzUAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAoAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-25T16:10:57.227Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "DbContext.cs",
               "DocumentMoniker": "C:\\Users\\brent\\source\\repos\\bike-maintenance-tracker-backend\\DbContext.cs",
               "RelativeDocumentMoniker": "DbContext.cs",
               "ToolTip": "C:\\Users\\brent\\source\\repos\\bike-maintenance-tracker-backend\\DbContext.cs",
               "RelativeToolTip": "DbContext.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAswAsAAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAswA0AAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-24T23:41:17.903Z"
             }

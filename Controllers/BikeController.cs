@@ -18,79 +18,93 @@ namespace BikeMaintTracker.Server.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
+        // GET Bike/{user}
+        [HttpGet("{user}")]
         public IEnumerable<Bikes> Get(string user)
         {
             return TestDB.GetBikes(user);
         }
 
+        // GET Bike/GetBikesOrdered
         [HttpGet("GetBikesOrdered/")]
         public IEnumerable<Bikes> GetOrdered(string user, string orderBy)
         {
             return TestDB.GetBikesOrdered(user, orderBy);
         }
 
-        // PUT: api/users/update
-        [HttpPut("updatebike")]
-        public IActionResult UpdateUser([FromBody] Bikes goal)
+        // POST Bike
+        [HttpPost]
+        public void AddBike([FromBody] Bikes bike)
         {
-            //var result = TestDB.UpdateBike(goal);
-            //System.Diagnostics.Debug.WriteLine("Updating: " + goal.id + " " + goal.daynumber);
-            //if (!result.success) System.Diagnostics.Debug.WriteLine("Error: " + result.message);
+            TestDB.AddBike(bike);
+        }
+
+        // PUT Bike
+        [HttpPut]
+        public IActionResult UpdateBike([FromBody] Bikes bike)
+        {
             var result = "success";
+            TestDB.UpdateBike(bike);
 
             return Ok(JsonSerializer.Serialize(result));
         }
 
+        // GET Bike/GetMaintLog
         [HttpGet("GetMaintLog/")]
         public IEnumerable<MaintLog> GetMaintLog(string user, string bike)
         {
             return TestDB.GetMaintLog(user, bike);
         }
 
+        // POST Bike/AddMaintLog
         [HttpPost("AddMaintLog/")]
-        public void AddMaintLogs(MaintLog[] set)
+        public void AddMaintLogs([FromBody] MaintLog[] set)
         {
             TestDB.AddMaintLogs(set);
         }
 
+        // DELETE Bike/DeleteMaintLog
         [HttpDelete("DeleteMaintLog/")]
-        public void DeleteMaintLogs(string[] ids)
+        public void DeleteMaintLogs([FromBody] string[] ids)
         {
             TestDB.DeleteMaintLogs(ids);
         }
 
+        // GET Bike/GetAlerts
         [HttpGet("GetAlerts/")]
         public IEnumerable<Alert> GetAlerts(string user, string? bike)
         {
             return TestDB.GetAlerts(user, bike);
         }
 
+        // POST Bike/AddAlerts
         [HttpPost("AddAlerts/")]
-        public void AddAlerts(Alert[] set)
+        public void AddAlerts([FromBody] Alert[] set)
         {
             TestDB.AddAlerts(set);
         }
 
+        // DELETE Bike/DeleteAlerts
         [HttpDelete("DeleteAlerts/")]
-        public void DeleteAlerts(string[] ids)
+        public void DeleteAlerts([FromBody] string[] ids)
         {
             TestDB.DeleteAlerts(ids);
         }
 
+        // GET Bike/GetAlertStatus
         [HttpGet("GetAlertStatus/")]
-        public IEnumerable<string> GetAlertStatus(string user)
+        public string GetAlertStatus(string user)
         {
             return TestDB.GetAlertStatus(user);
         }
 
+        // POST Bike/SetAlertStatus
         [HttpPost("SetAlertStatus/")]
-        public void SetAlertStatus(AlertStatus update)
+        public void SetAlertStatus([FromBody] string user,string update)
         {
-            TestDB.SetAlertStatus(update);
+            TestDB.SetAlertStatus(user, update);
         }
     }
 }
 
 
-// Build confidence, build courage

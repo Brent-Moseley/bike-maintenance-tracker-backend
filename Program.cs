@@ -18,6 +18,16 @@ namespace BikeMaintTracker.Server
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            // Define CORS policy
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowLocalhost3000", builder =>
+                {
+                    builder.WithOrigins("http://localhost:3000") // Allow specific origin
+                           .AllowAnyHeader() // Allow any headers
+                           .AllowAnyMethod(); // Allow any methods (GET, POST, etc.)
+                });
+            });
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -43,15 +53,17 @@ namespace BikeMaintTracker.Server
                 app.UseSwaggerUI();
             }
 
+            //builder.WebHost.UseUrls("http://localhost:5000");
+
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
+            app.UseCors("AllowLocalhost3000");
 
             app.MapControllers();
 
             app.MapFallbackToFile("/index.html");
-            TestDB.test(DBConnection);
+            //TestDB.test(DBConnection);
 
 
             app.Run();

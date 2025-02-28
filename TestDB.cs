@@ -45,6 +45,65 @@ namespace BikeMaintTracker.Server
             return list;
         }
 
+        public static void AddBike(Bikes bike)
+        {
+            var connectionString = Program.getDBConnection();
+            if (connectionString == "") return;
+
+            // Save this serviceProvider in a static variable?
+            var serviceProvider = new ServiceCollection()
+                .AddDbContext<AppDbContext>(options =>
+                    options.UseNpgsql(connectionString))
+                .BuildServiceProvider();
+
+            using (var context = serviceProvider.GetRequiredService<AppDbContext>())
+            {
+                //var alertsToDelete = context.Alerts.Where(alert => alertIds.Contains(alert.id)).ToList();
+
+
+                if (bike.id != null)
+                {
+                    context.Bikes.Add(bike);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+
+        public static void UpdateBike(Bikes bike)
+        {
+            var connectionString = Program.getDBConnection();
+            if (connectionString == "") return;
+
+            // Save this serviceProvider in a static variable?
+            var serviceProvider = new ServiceCollection()
+                .AddDbContext<AppDbContext>(options =>
+                    options.UseNpgsql(connectionString))
+                .BuildServiceProvider();
+
+            using (var context = serviceProvider.GetRequiredService<AppDbContext>())
+            {
+                //var alertsToDelete = context.Alerts.Where(alert => alertIds.Contains(alert.id)).ToList();
+                var existing = context.Bikes.FirstOrDefault(u => u.id == bike.id);
+
+                if (bike != null)
+                {
+                    existing.brand = bike.brand;
+                    existing.name = bike.name;
+                    existing.notes = bike.notes;    
+                    existing.totalMiles = bike.totalMiles;
+                    existing.spec = bike.spec;
+                    existing.dateLastServiced = bike.dateLastServiced;
+                    existing.milesLastServiced = bike.milesLastServiced;
+                    existing.model = bike.model;
+                    existing.trackBy = bike.trackBy;
+                    existing.model = bike.model;
+
+                    context.SaveChanges();
+                }
+            }
+        }
+
         public static List<MaintLog> GetMaintLog(string user, string bike)
         {
             return GetMaintLogDB(user, bike);
@@ -167,9 +226,32 @@ namespace BikeMaintTracker.Server
 
             using (var context = serviceProvider.GetRequiredService<AppDbContext>())
             {
-                statusString = context.AlertStatus.Where(stat => stat.userId == user).ToList()[0].statusString;
+                var status = context.AlertStatus.Where(stat => stat.userId == user).ToList();
+                if (status.Any() && status.Count > 0) statusString = status[0].statusString;
             }
+
             return statusString;
+        }
+
+        public static void SetAlertStatus(string user, string status)
+        {
+            var connectionString = Program.getDBConnection();
+            if (connectionString == "") return;
+
+            // Save this serviceProvider in a static variable?
+            var serviceProvider = new ServiceCollection()
+            .AddDbContext<AppDbContext>(options =>
+                options.UseNpgsql(connectionString))
+            .BuildServiceProvider();
+
+            var updated = new AlertStatus { id = Guid.NewGuid().ToString(), userId = user, statusString = status };
+
+            using (var context = serviceProvider.GetRequiredService<AppDbContext>())
+            {
+                context.AlertStatus.Where(stat => stat.userId == user).ExecuteDelete();
+                context.AlertStatus.Add(updated);
+                context.SaveChanges();
+            }
         }
 
         public static void AddMaintLogs(MaintLog[] set)
