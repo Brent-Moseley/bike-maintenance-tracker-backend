@@ -86,7 +86,7 @@ namespace BikeMaintTracker.Server
                 //var alertsToDelete = context.Alerts.Where(alert => alertIds.Contains(alert.id)).ToList();
                 var existing = context.Bikes.FirstOrDefault(u => u.id == bike.id);
 
-                if (bike != null)
+                if (existing != null)
                 {
                     existing.brand = bike.brand;
                     existing.name = bike.name;
@@ -94,6 +94,7 @@ namespace BikeMaintTracker.Server
                     existing.totalMiles = bike.totalMiles;
                     existing.spec = bike.spec;
                     existing.dateLastServiced = bike.dateLastServiced;
+                    existing.monthYearPurchased = bike.monthYearPurchased;
                     existing.milesLastServiced = bike.milesLastServiced;
                     existing.model = bike.model;
                     existing.trackBy = bike.trackBy;

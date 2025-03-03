@@ -64,10 +64,12 @@ namespace BikeMaintTracker.Server.Controllers
         }
 
         // DELETE Bike/DeleteMaintLog
-        [HttpDelete("DeleteMaintLog/")]
-        public void DeleteMaintLogs([FromBody] string[] ids)
+        [HttpDelete("DeleteMaintLog/{ids}")]
+        public void DeleteMaintLogs(string ids)
         {
-            TestDB.DeleteMaintLogs(ids);
+            var list = JsonSerializer.Deserialize<string[]>(ids);
+            if (list.Length == 0) { return; }
+            TestDB.DeleteMaintLogs(list);
         }
 
         // GET Bike/GetAlerts
