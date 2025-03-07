@@ -7,4 +7,10 @@
         public string statusString { get; set; }
     }
 
+    public class AlertStatusUpload
+    {
+        public string user { get; set; }
+        public string update { get; set; }
+    }
+
 }

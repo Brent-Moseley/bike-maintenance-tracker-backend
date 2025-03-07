@@ -87,24 +87,27 @@ namespace BikeMaintTracker.Server.Controllers
         }
 
         // DELETE Bike/DeleteAlerts
-        [HttpDelete("DeleteAlerts/")]
-        public void DeleteAlerts([FromBody] string[] ids)
+        [HttpDelete("DeleteAlerts/{ids}")]
+        public void DeleteAlerts(string ids)
         {
-            TestDB.DeleteAlerts(ids);
+            var list = JsonSerializer.Deserialize<string[]>(ids);
+            if (list.Length == 0) { return; }
+
+            TestDB.DeleteAlerts(list);
         }
 
         // GET Bike/GetAlertStatus
-        [HttpGet("GetAlertStatus/")]
-        public string GetAlertStatus(string user)
+        [HttpGet("GetAlertStatus/{user}")]
+        public string GetAlertStatus(string user)   
         {
             return TestDB.GetAlertStatus(user);
         }
 
         // POST Bike/SetAlertStatus
         [HttpPost("SetAlertStatus/")]
-        public void SetAlertStatus([FromBody] string user,string update)
+        public void SetAlertStatus([FromBody] AlertStatusUpload data)
         {
-            TestDB.SetAlertStatus(user, update);
+            TestDB.SetAlertStatus(data.user, data.update);
         }
     }
 }
