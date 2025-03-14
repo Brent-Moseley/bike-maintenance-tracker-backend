@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BikeMaintTracker.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+680b30ff0e153b765ca2b43a70d3415f1def4dde")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dd666ea1cb7901b27d531e23a36017a645a9c975")]
 [assembly: System.Reflection.AssemblyProductAttribute("BikeMaintTracker.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BikeMaintTracker.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

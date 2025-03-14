@@ -11,6 +11,8 @@ namespace BikeMaintTracker.Server
         public DbSet<MaintLog> MaintLogs { get; set; }
         public DbSet<Alert> Alerts { get; set; }
 
+        public DbSet<Users> Users { get; set; }
+
         public DbSet<AlertStatus> AlertStatus { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -1,11 +1,33 @@
 ﻿using BikeMaintTracker.Server.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using System.Collections.Generic;
 
 namespace BikeMaintTracker.Server
 {
     public static class TestDB
     {
+        public static Users? GetUser(string user, string passCode)
+        {
+            var connectionString = Program.getDBConnection();
+            if (connectionString == "") return null;
+
+            // Save this serviceProvider in a static variable?
+            var serviceProvider = new ServiceCollection()
+            .AddDbContext<AppDbContext>(options =>
+                options.UseNpgsql(connectionString))
+            .BuildServiceProvider();
+
+            Users? userVal;
+            using (var context = serviceProvider.GetRequiredService<AppDbContext>())
+            {
+                 userVal = context.Users.Where(userRec => userRec.id == user && userRec.passCode == passCode).FirstOrDefault();
+                // Below may be unnecessary
+
+            }
+            return userVal;
+        }
+
         public static List<Bikes> GetBikes(string user)
         {
             return GetBikesDB(user);

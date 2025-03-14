@@ -18,6 +18,14 @@ namespace BikeMaintTracker.Server.Controllers
             _logger = logger;
         }
 
+        // GET Bike/GetUser
+        [HttpGet("GetUser/")]
+        public Users? GetUser(string user, string passCode)
+        {
+             var userRec = TestDB.GetUser(user, passCode);
+            return userRec;
+        }
+
         // GET Bike/{user}
         [HttpGet("{user}")]
         public IEnumerable<Bikes> Get(string user)
