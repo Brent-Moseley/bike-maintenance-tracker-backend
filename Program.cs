@@ -27,6 +27,12 @@ namespace BikeMaintTracker.Server
                            .AllowAnyHeader() // Allow any headers
                            .AllowAnyMethod(); // Allow any methods (GET, POST, etc.)
                 });
+                options.AddPolicy("AllowLocalhost3000", builder =>
+                {
+                    builder.WithOrigins("https://bike-maintenance-tracker-9b3b9.web.app/") // Allow specific origin
+                           .AllowAnyHeader() // Allow any headers
+                           .AllowAnyMethod(); // Allow any methods (GET, POST, etc.)
+                });
             });
 
             builder.Services.AddControllers();
