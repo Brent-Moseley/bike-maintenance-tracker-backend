@@ -60,7 +60,7 @@ namespace BikeMaintTracker.Server
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-            app.UseCors("AllowLocalhost3000");
+            app.UseCors("AllowFrontEnd");
 
             app.MapControllers();
 
