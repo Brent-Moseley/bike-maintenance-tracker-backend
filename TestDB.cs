@@ -21,7 +21,7 @@ namespace BikeMaintTracker.Server
             Users? userVal;
             using (var context = serviceProvider.GetRequiredService<AppDbContext>())
             {
-                 userVal = context.Users.Where(userRec => userRec.id == user && userRec.passCode == passCode).FirstOrDefault();
+                 userVal = context.Users.Where(userRec => userRec.name == user && userRec.passCode == passCode).FirstOrDefault();
                 // Below may be unnecessary
 
             }
