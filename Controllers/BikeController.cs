@@ -26,6 +26,9 @@ namespace BikeMaintTracker.Server.Controllers
             return userRec;
         }
 
+        //https://bike-maint-tracker-hxafcdavbkghcmbw.canadacentral-01.azurewebsites.net/Bike/GetUser?user=123&passCode=456
+        //    https://bike-maint-tracker-hxafcdavbkghcmbw.canadacentral-01.azurewebsites.net/Bike/12345
+
         // GET Bike/{user}
         [HttpGet("{user}")]
         public IEnumerable<Bikes> Get(string user)
