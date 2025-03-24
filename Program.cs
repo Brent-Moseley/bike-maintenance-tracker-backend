@@ -21,15 +21,11 @@ namespace BikeMaintTracker.Server
             // Define CORS policy
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("AllowLocalhost3000", builder =>
+                options.AddPolicy("AllowFrontEnd", builder =>
                 {
-                    builder.WithOrigins("http://localhost:3000") // Allow specific origin
-                           .AllowAnyHeader() // Allow any headers
-                           .AllowAnyMethod(); // Allow any methods (GET, POST, etc.)
-                });
-                options.AddPolicy("AllowLocalhost3000", builder =>
-                {
-                    builder.WithOrigins("https://bike-maintenance-tracker-9b3b9.web.app/") // Allow specific origin
+                    builder.WithOrigins("http://localhost:3000",
+                        "https://bike-maintenance-tracker-9b3b9.web.app"
+                        ) // Allow specific origin
                            .AllowAnyHeader() // Allow any headers
                            .AllowAnyMethod(); // Allow any methods (GET, POST, etc.)
                 });
