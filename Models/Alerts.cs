@@ -10,8 +10,8 @@ namespace BikeMaintTracker.Server.Models
         public string bikeName { get; set; }
         public DateTime? date { get; set; } // Nullable type
 
-        [NotMapped] // This property will not be saved in the DB
-        public string? isoDate { get; set; }
+        //[NotMapped] // This property will not be saved in the DB
+        //public string? isoDate { get; set; }
 
         public string description { get; set; }
         public int? miles { get; set; } // Nullable type

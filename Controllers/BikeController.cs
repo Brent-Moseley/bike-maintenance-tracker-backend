@@ -88,10 +88,10 @@ namespace BikeMaintTracker.Server.Controllers
         public IEnumerable<Alert> GetAlerts(string user, string? bike)
         {
             var alerts =  TestDB.GetAlerts(user, bike);
-            foreach (Alert al in alerts)
-            {
-                al.isoDate = al.date.ToString();
-            }
+            //foreach (Alert al in alerts)
+            //{
+            //    al.isoDate = al.date.ToString();
+            //}
             return alerts;
         }
 
@@ -99,10 +99,10 @@ namespace BikeMaintTracker.Server.Controllers
         [HttpPost("AddAlerts/")]
         public void AddAlerts([FromBody] Alert[] set)
         {
-            foreach (Alert al in set)
-            {
-                if (al.isoDate?.Length  > 0) al.date = DateTime.Parse(al.isoDate);
-            }
+            //foreach (Alert al in set)
+            //{
+            //    if (al.date != null) al.date = DateTime.Parse(al.date);
+            //}
             TestDB.AddAlerts(set);
         }
 
