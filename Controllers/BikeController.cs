@@ -87,13 +87,22 @@ namespace BikeMaintTracker.Server.Controllers
         [HttpGet("GetAlerts/")]
         public IEnumerable<Alert> GetAlerts(string user, string? bike)
         {
-            return TestDB.GetAlerts(user, bike);
+            var alerts =  TestDB.GetAlerts(user, bike);
+            foreach (Alert al in alerts)
+            {
+                al.isoDate = al.date.ToString();
+            }
+            return alerts;
         }
 
         // POST Bike/AddAlerts
         [HttpPost("AddAlerts/")]
         public void AddAlerts([FromBody] Alert[] set)
         {
+            foreach (Alert al in set)
+            {
+                if (al.isoDate?.Length  > 0) al.date = DateTime.Parse(al.isoDate);
+            }
             TestDB.AddAlerts(set);
         }
 
