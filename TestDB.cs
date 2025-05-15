@@ -271,6 +271,14 @@ namespace BikeMaintTracker.Server
 
             using (var context = serviceProvider.GetRequiredService<AppDbContext>())
             {
+                // Copy current (to be deleted) alert status to the history table.
+                AlertStatus? old = context.AlertStatus.Where(stat => stat.userId == user).FirstOrDefault();
+                if (old != null) context.AlertStatusHistory.Add(new AlertStatusHistory { 
+                    id = Guid.NewGuid().ToString(), 
+                    userId = old.userId, 
+                    statusString = old.statusString ,
+                    created_at = DateTimeOffset.UtcNow,
+                });
                 context.AlertStatus.Where(stat => stat.userId == user).ExecuteDelete();
                 context.AlertStatus.Add(updated);
                 context.SaveChanges();
