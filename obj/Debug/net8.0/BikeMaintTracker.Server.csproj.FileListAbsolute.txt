@@ -39,3 +39,11 @@ C:\Users\brent\source\repos\bike-maintenance-tracker-backend\obj\Debug\net8.0\Bi
 C:\Users\brent\source\repos\bike-maintenance-tracker-backend\obj\Debug\net8.0\BikeMaintTracker.Server.genruntimeconfig.cache
 C:\Users\brent\source\repos\bike-maintenance-tracker-backend\obj\Debug\net8.0\ref\BikeMaintTracker.Server.dll
 C:\Users\brent\source\repos\bike-maintenance-tracker-backend\obj\Debug\net8.0\BikeMaintTracker.Server.sourcelink.json
+C:\Users\brent\source\repos\bike-maintenance-tracker-backend\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\brent\source\repos\bike-maintenance-tracker-backend\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\brent\source\repos\bike-maintenance-tracker-backend\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\brent\source\repos\bike-maintenance-tracker-backend\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\brent\source\repos\bike-maintenance-tracker-backend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\brent\source\repos\bike-maintenance-tracker-backend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\brent\source\repos\bike-maintenance-tracker-backend\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\brent\source\repos\bike-maintenance-tracker-backend\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll

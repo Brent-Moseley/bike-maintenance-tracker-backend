@@ -1,6 +1,9 @@
 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace BikeMaintTracker.Server
 {
@@ -30,6 +33,24 @@ namespace BikeMaintTracker.Server
                            .AllowAnyMethod(); // Allow any methods (GET, POST, etc.)
                 });
             });
+            // Add authentication services
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = "azurewebsites.net",
+                        ValidAudience = "bike-maintenance-tracker-9b3b9.web.app",
+                        // Note:  Move to Azure Key Vault:
+                        //IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("EkIJzl3EmmxZku1VfyXHkZIqYaL3B89xtG3iWpZsP1M="))  
+                        IssuerSigningKey = new SymmetricSecurityKey(Convert.FromBase64String("EkIJzl3EmmxZku1VfyXHkZIqYaL3B89xtG3iWpZsP1M="))
+                    };
+                });
+
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -47,6 +68,9 @@ namespace BikeMaintTracker.Server
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            app.UseAuthentication(); // Enable authentication middleware
+            app.UseAuthorization(); // Enable authorization
+
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
