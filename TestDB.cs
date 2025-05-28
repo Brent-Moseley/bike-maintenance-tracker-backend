@@ -22,9 +22,9 @@ namespace BikeMaintTracker.Server
             using (var context = serviceProvider.GetRequiredService<AppDbContext>())
             {
                  userVal = context.Users.Where(userRec => userRec.name == user && userRec.passCode == passCode).FirstOrDefault();
-                // Below may be unnecessary
 
             }
+            if (userVal != null) SetAlertStatus(userVal.id, "");     // Back up Alert Status set.
             return userVal;
         }
 
@@ -256,7 +256,7 @@ namespace BikeMaintTracker.Server
             return statusString;
         }
 
-        public static void SetAlertStatus(string user, string status)
+        public static async void SetAlertStatus(string user, string status)
         {
             var connectionString = Program.getDBConnection();
             if (connectionString == "") return;
@@ -279,7 +279,14 @@ namespace BikeMaintTracker.Server
                     statusString = old.statusString ,
                     created_at = DateTimeOffset.UtcNow,
                 });
-                context.AlertStatus.Where(stat => stat.userId == user).ExecuteDelete();
+                if (status.Length < 10)
+                {
+                    // Make a backup of current alert status set until a refactoring can be done
+                    // to save each status as individual records instead of a JSON encoded array.
+                    context.SaveChanges();
+                    return;
+                }
+                await context.AlertStatus.Where(stat => stat.userId == user).ExecuteDeleteAsync();
                 context.AlertStatus.Add(updated);
                 context.SaveChanges();
             }
