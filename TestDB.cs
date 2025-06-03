@@ -1,7 +1,10 @@
 ﻿using BikeMaintTracker.Server.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Update.Internal;
 using Microsoft.Extensions.Options;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Text.Json;
 
 namespace BikeMaintTracker.Server
 {
@@ -224,22 +227,45 @@ namespace BikeMaintTracker.Server
 
             using (var context = serviceProvider.GetRequiredService<AppDbContext>())
             {
+                var alertStatToDelete = context.AlertStatusMain.Where(alert => alertIds.Contains(alert.alertID)).ToList();
                 var alertsToDelete = context.Alerts.Where(alert => alertIds.Contains(alert.id)).ToList();
 
                 if (alertsToDelete.Any())
                 {
+                    context.AlertStatusMain.RemoveRange(alertStatToDelete);
+                    context.SaveChanges();
                     context.Alerts.RemoveRange(alertsToDelete);
                     context.SaveChanges();
                 }
             }
         }
 
+        // Alert status is simply a string of IDs anda short word for status.
+        // The UI maintains a table of these, and will save anytime a change is made.
+        // The alert set for a user will likely be small, rarely more than 100 records.  Never more than 500.
+        // It is a simple matter to get all records for a user and build the status string.  Housekeeping can be done
+        // to remove alerts that are expired, if desired.
+        // Updates simply imvolve loading the current set for the user, scanning the status string, and finding the differences.
+        //  Then updating the model to add, remove, and update.  Then saving these DBSet changes to the database.
+        //  In this way, the UI code does not need to change at all and it will maintain scanning efficiency when
+        //  running the alert cycle.  
+        private class AlertStatusJSONFormat
+        {
+            public string id { get; set; }     // references the alert id
+            public string status { get; set; }   // cleared, created, acknowledged, triggered
+        }
+
         public static string GetAlertStatus(string user)
         {
+            // Load all DB records for the given user.
+            //   Convert all to the above alert status JSON format.
+            //   Return to the UI.
+            //   This is also an opportunity to do cleanup and remove all 'cleared' alerts that are older than one month. 
+
             var connectionString = Program.getDBConnection();
             if (connectionString == "") return "";
 
-            var statusString = "";
+            var statusString = "[]";
 
             // Save this serviceProvider in a static variable?
             var serviceProvider = new ServiceCollection()
@@ -249,8 +275,20 @@ namespace BikeMaintTracker.Server
 
             using (var context = serviceProvider.GetRequiredService<AppDbContext>())
             {
-                var status = context.AlertStatus.Where(stat => stat.userId == user).ToList();
-                if (status.Any() && status.Count > 0) statusString = status[0].statusString;
+                //var status = context.AlertStatus.Where(stat => stat.userId == user).ToList();
+                //if (status.Any() && status.Count > 0) statusString = status[0].statusString;
+                var statusSet = context.AlertStatusMain.Where(stat => stat.userId == user).ToList();
+                List<AlertStatusJSONFormat> converted = [];
+                if (statusSet.Any())
+                {
+                    statusSet.ForEach(status => {
+                        converted.Add(new AlertStatusJSONFormat { 
+                            id = status.alertID,
+                            status = status.status
+                        });
+                    });
+                    statusString = JsonSerializer.Serialize<AlertStatusJSONFormat[]>(converted.ToArray());
+                }
             }
 
             return statusString;
@@ -258,6 +296,13 @@ namespace BikeMaintTracker.Server
 
         public static async void SetAlertStatus(string user, string status)
         {
+            // Load the current list of ids for the given user from the DB.
+            // For each status in the given status string, look for it in the current list.
+            //  If not found, add to DB.
+            //  If found, and the status sring is different, update in DB.
+            //  For all remaining ids in the current list, remove those from the DB (they have been deleted from the UI table).
+            if (user.Length == 0 || status.Length < 10) return;
+
             var connectionString = Program.getDBConnection();
             if (connectionString == "") return;
 
@@ -267,12 +312,12 @@ namespace BikeMaintTracker.Server
                 options.UseNpgsql(connectionString))
             .BuildServiceProvider();
 
-            var updated = new AlertStatus { id = Guid.NewGuid().ToString(), userId = user, statusString = status };
+            //var updated = new AlertStatus { id = Guid.NewGuid().ToString(), userId = user, statusString = status };
 
             using (var context = serviceProvider.GetRequiredService<AppDbContext>())
             {
                 // Copy current (to be deleted) alert status to the history table.
-                AlertStatus? old = context.AlertStatus.Where(stat => stat.userId == user).FirstOrDefault();
+                /*AlertStatus? old = context.AlertStatus.Where(stat => stat.userId == user).FirstOrDefault();
                 if (old != null) context.AlertStatusHistory.Add(new AlertStatusHistory { 
                     id = Guid.NewGuid().ToString(), 
                     userId = old.userId, 
@@ -287,10 +332,111 @@ namespace BikeMaintTracker.Server
                     return;
                 }
                 await context.AlertStatus.Where(stat => stat.userId == user).ExecuteDeleteAsync();
-                context.AlertStatus.Add(updated);
-                context.SaveChanges();
+                context.AlertStatus.Add(updated); */
+
+                Trace.WriteLine("*****************  Updating Alert Statues *******************");
+                var current =  context.AlertStatusMain.Where(stat => stat.userId == user)?.ToList();
+
+                var updatedSetFromUI = JsonSerializer.Deserialize<AlertStatusJSONFormat[]>(status)?.ToList();
+                Trace.WriteLine($"  Prcessing {updatedSetFromUI.Count} updates");
+                if (updatedSetFromUI?.Count > 0)
+                {
+                    updatedSetFromUI.ForEach(statusInUI =>
+                    {
+                        Trace.WriteLine("  UI alert: " + statusInUI.id);
+
+                        var seek = current.Find(s => s.alertID == statusInUI.id);
+                        if (seek != null)
+                        {
+                            //Trace.WriteLine("     Found");
+                            if (seek.status != statusInUI.status)
+                            {
+                                Trace.WriteLine($"     Found, status of {statusInUI.status} does not match, so need to update in DB");
+                                seek.status = statusInUI.status;
+                            }
+                            else
+                            {
+                                Trace.WriteLine("     Found and status already matches, so no need to update.");
+                            }
+                        }
+                        else
+                        {
+                            Trace.WriteLine($"   {statusInUI.id} with status of {statusInUI.status} not found, adding this to the DB");
+                            context.AlertStatusMain.Add(new AlertStatusMain
+                            {
+                                id = Guid.NewGuid().ToString(),
+                                userId = user,
+                                alertID = statusInUI.id,
+                                status = statusInUI.status
+                            });
+                        }
+                    });
+                    context.SaveChanges();
+                    // Now, everything from current that is NOT in updatedSetFromUI has been deleted, need to remove from DB.
+                    Trace.WriteLine("       ********  Now processing deletes ***********");
+                    current?.ForEach(curr =>
+                    {
+                        //Trace.WriteLine("Looking for deletes, processing: " +  curr.alertID);
+                        if (updatedSetFromUI.Find(us => us.id == curr.alertID) == null)
+                        {
+                            Trace.WriteLine($"     {curr.alertID} in DB but not found in UI table, so this must be deleted.");
+                            context.AlertStatusMain.Where(stat => stat.alertID == curr.alertID).ExecuteDelete();
+                        }
+                        else
+                        {
+                            Trace.WriteLine($"    {curr.alertID} Found in DB and UI table, no need to delete");
+                        }
+                    });
+                }
             }
         }
+
+        public static int ConvertAlertStatuses()     // used for migration
+        {
+            var connectionString = Program.getDBConnection();
+            if (connectionString == "") return 0;
+
+            var statusString = "";
+
+            // Save this serviceProvider in a static variable?
+            var serviceProvider = new ServiceCollection()
+            .AddDbContext<AppDbContext>(options =>
+                options.UseNpgsql(connectionString))
+            .BuildServiceProvider();
+
+            int count = 0;
+
+            using (var context = serviceProvider.GetRequiredService<AppDbContext>())
+            {
+                var fullSet = context.AlertStatus.ToList();
+                if (fullSet.Any() && fullSet.Count > 0)
+                {
+                    fullSet.ForEach(stat =>
+                    {
+                        var user = stat.userId; // which user is this for
+                        var statusSet = JsonSerializer.Deserialize<AlertStatusJSONFormat[]>(stat.statusString);
+                        if (statusSet?.Length > 0)
+                        {
+                            foreach (var item in statusSet)
+                            {
+                                context.AlertStatusMain.Add(new AlertStatusMain
+                                {
+                                    id = Guid.NewGuid().ToString(),
+                                    alertID = item.id.ToString(),
+                                    userId = user,
+                                    status = item.status
+                                });
+                                count++;
+                            }
+                        }
+                    });
+                }
+                context.SaveChanges();
+            }
+
+            return count;
+        }
+
 
         public static void AddMaintLogs(MaintLog[] set)
         {

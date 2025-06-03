@@ -91,7 +91,6 @@ namespace BikeMaintTracker.Server
             app.MapFallbackToFile("/index.html");
             //TestDB.test(DBConnection);
 
-
             app.Run();
 
         }

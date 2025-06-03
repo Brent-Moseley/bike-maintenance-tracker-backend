@@ -50,6 +50,11 @@ namespace BikeMaintTracker.Server.Controllers
         [HttpGet("GetUser/")]
         public UsersWithToken? GetUser(string user, string passCode)
         {
+            // One time migration of alert statuses.  
+            // Run when table is empty.
+            //var count = TestDB.ConvertAlertStatuses();
+            //Console.WriteLine("We have now converted " + count.ToString() + "alert status records.");
+
             var userRec = TestDB.GetUser(user, passCode);
 
             UsersWithToken ret = new UsersWithToken();
