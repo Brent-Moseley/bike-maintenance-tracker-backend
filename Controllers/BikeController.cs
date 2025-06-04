@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -53,7 +54,7 @@ namespace BikeMaintTracker.Server.Controllers
             // One time migration of alert statuses.  
             // Run when table is empty.
             //var count = TestDB.ConvertAlertStatuses();
-            //Console.WriteLine("We have now converted " + count.ToString() + "alert status records.");
+            //Trace.WriteLine("We have now converted " + count.ToString() + "alert status records.");
 
             var userRec = TestDB.GetUser(user, passCode);
 

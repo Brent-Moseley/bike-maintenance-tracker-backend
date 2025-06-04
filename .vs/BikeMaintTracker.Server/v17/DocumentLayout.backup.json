@@ -70,8 +70,7 @@
               "RelativeToolTip": "DbContext.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAowAsAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-14T20:12:15.859Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-14T20:12:15.859Z"
             },
             {
               "$type": "Document",
@@ -155,8 +154,7 @@
               "RelativeToolTip": "Models\\AlertStatus.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-06T15:16:19.813Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-06T15:16:19.813Z"
             },
             {
               "$type": "Document",
@@ -168,8 +166,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAADkAAAAAAAAAAAAiwFwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-27T22:10:26.234Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-27T22:10:26.234Z"
             },
             {
               "$type": "Document",
@@ -179,7 +176,7 @@
               "RelativeDocumentMoniker": "TestDB.cs",
               "ToolTip": "C:\\Users\\brent\\source\\repos\\bike-maintenance-tracker-backend\\TestDB.cs",
               "RelativeToolTip": "TestDB.cs",
-              "ViewState": "AgIAAHkBAAAAAAAAAAAmwIIBAABZAAAAAAAAAA==",
+              "ViewState": "AgIAAJsBAAAAAAAAAAAAAIkBAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-25T16:32:40.365Z",
               "EditorCaption": ""
@@ -192,7 +189,7 @@
               "RelativeDocumentMoniker": "Controllers\\BikeController.cs",
               "ToolTip": "C:\\Users\\brent\\source\\repos\\bike-maintenance-tracker-backend\\Controllers\\BikeController.cs",
               "RelativeToolTip": "Controllers\\BikeController.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAiwDUAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAiwDUAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-25T16:10:57.227Z",
               "EditorCaption": ""
