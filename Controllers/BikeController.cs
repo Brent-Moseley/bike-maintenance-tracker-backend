@@ -1,13 +1,9 @@
 ﻿using BikeMaintTracker.Server.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Text;
 using System.Text.Json;
 
 namespace BikeMaintTracker.Server.Controllers
@@ -27,6 +23,7 @@ namespace BikeMaintTracker.Server.Controllers
 
         private string GenerateJwtToken(string username)
         {
+            // TODO:  store security key in external store instead of hardcoded.
             var securityKey = new SymmetricSecurityKey(Convert.FromBase64String("EkIJzl3EmmxZku1VfyXHkZIqYaL3B89xtG3iWpZsP1M="));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
@@ -38,7 +35,7 @@ namespace BikeMaintTracker.Server.Controllers
 
             var token = new JwtSecurityToken(
                 issuer: "azurewebsites.net",
-                audience: "bike-maintenance-tracker-9b3b9.web.app",
+                audience: "bike-maintenance-tracker-9b3b9.web.app",     // front end web app
                 claims: claims,
                 expires: DateTime.UtcNow.AddHours(12),
                 signingCredentials: credentials
@@ -68,13 +65,9 @@ namespace BikeMaintTracker.Server.Controllers
 
                 ret.token = GenerateJwtToken(userRec.name);
             }
-            //else ret.id = null;
 
             return ret;
         }
-
-        //https://bike-maint-tracker-hxafcdavbkghcmbw.canadacentral-01.azurewebsites.net/Bike/GetUser?user=123&passCode=456
-        //    https://bike-maint-tracker-hxafcdavbkghcmbw.canadacentral-01.azurewebsites.net/Bike/12345
 
         [Authorize]
         // GET Bike/{user}
@@ -143,10 +136,6 @@ namespace BikeMaintTracker.Server.Controllers
         public IEnumerable<Alert> GetAlerts(string user, string? bike)
         {
             var alerts =  TestDB.GetAlerts(user, bike);
-            //foreach (Alert al in alerts)
-            //{
-            //    al.isoDate = al.date.ToString();
-            //}
             return alerts;
         }
 
@@ -155,10 +144,6 @@ namespace BikeMaintTracker.Server.Controllers
         [HttpPost("AddAlerts/")]
         public void AddAlerts([FromBody] Alert[] set)
         {
-            //foreach (Alert al in set)
-            //{
-            //    if (al.date != null) al.date = DateTime.Parse(al.date);
-            //}
             TestDB.AddAlerts(set);
         }
 

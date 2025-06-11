@@ -14,9 +14,9 @@ namespace BikeMaintTracker.Server.Models
         //public string? isoDate { get; set; }
 
         public string description { get; set; }
-        public int? miles { get; set; } // Nullable type
-        public int? repeatMiles { get; set; } // Nullable type
-        public int? repeatDays { get; set; } // Nullable type
+        public int? miles { get; set; }
+        public int? repeatMiles { get; set; }
+        public int? repeatDays { get; set; }
         public string status { get; set; }
     }
 

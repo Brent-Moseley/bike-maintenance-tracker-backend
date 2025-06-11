@@ -8,10 +8,4 @@
         public DateTimeOffset created_at { get; set; }
     }
 
-    //public class AlertStatusUpload
-    //{
-    //    public string user { get; set; }
-    //    public string update { get; set; }
-    //}
-
 }
